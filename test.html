@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giải mã HEX sang Text - Trang Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .test-section {
+            margin-bottom: 40px;
+            padding: 20px;
+            background: #f8f8f8;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+
+        .test-section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .test-case {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .test-case:last-child {
+            margin-bottom: 0;
+        }
+
+        .test-label {
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .hex-text {
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #d63384;
+            user-select: all;
+            cursor: text;
+            display: inline-block;
+            margin: 5px 0;
+            border: 2px dashed #ccc;
+        }
+
+        .hex-text:hover {
+            background: #e8e8e8;
+            border-color: #667eea;
+        }
+
+        .expected {
+            color: #28a745;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .instructions {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .instructions h3 {
+            color: #856404;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+            color: #856404;
+        }
+
+        .instructions li {
+            margin-bottom: 5px;
+        }
+
+        code {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🔓 Giải mã HEX sang Text - Trang Test</h1>
+        <p class="subtitle">Bôi đen bất kỳ chuỗi HEX nào dưới đây để test chế độ inline</p>
+
+        <div class="instructions">
+            <h3>📋 Cách Test</h3>
+            <ol>
+                <li>Cài đặt Chrome Extension (xem README.md)</li>
+                <li>Bôi đen bất kỳ chuỗi HEX nào dưới đây bằng chuột</li>
+                <li>Click nút "🔓 Giải mã HEX" xuất hiện</li>
+                <li>Xem kết quả giải mã trong bong bóng</li>
+                <li>Với URL, thử các nút "Mở link" và "Mở ẩn danh"</li>
+                <li><strong>MỚI:</strong> Hoặc bôi đen → click chuột phải → chọn "🔓 Giải mã HEX"</li>
+            </ol>
+        </div>
+
+        <!-- Basic Text Tests -->
+        <div class="test-section">
+            <h2>1. Giải mã văn bản cơ bản</h2>
+
+            <div class="test-case">
+                <span class="test-label">Test: ASCII đơn giản</span>
+                <div class="hex-text">48656c6c6f20576f726c64</div>
+                <div class="expected">✅ Mong đợi: "Hello World"</div>
+            </div>
+
+            <div class="test-case">
+                <span class="test-label">Test: Lời chào lập trình</span>
+                <div class="hex-text">48656c6c6f2c20576f726c6421</div>
+                <div class="expected">✅ Mong đợi: "Hello, World!"</div>
+            </div>
+
+            <div class="test-case">
+                <span class="test-label">Test: Số và chữ</span>
+                <div class="hex-text">546573743132333435</div>
+                <div class="expected">✅ Mong đợi: "Test12345"</div>
+            </div>
+        </div>
+
+        <!-- Whitespace Handling -->
+        <div class="test-section">
+            <h2>2. Xử lý khoảng trắng</h2>
+
+            <div class="test-case">
+                <span class="test-label">Test: HEX có khoảng trắng</span>
+                <div class="hex-text">48 65 6c 6c 6f</div>
+                <div class="expected">✅ Mong đợi: "Hello"</div>
+            </div>
+
+            <div class="test-case">
+                <span class="test-label">Test: Multi-line HEX</span>
+                <div class="hex-text">48 65 6c 6c 6f
+                    57 6f 72 6c 64</div>
+                <div class="expected">✅ Expected: "HelloWorld"</div>
+            </div>
+        </div>
+
+        <!-- UTF-8 Tests -->
+        <div class="test-section">
+            <h2>3. UTF-8 & Unicode</h2>
+
+            <div class="test-case">
+                <span class="test-label">Test: Tiếng Việt</span>
+                <div class="hex-text">5869e1baa720636861cc8820566965cc82744e616d</div>
+                <div class="expected">✅ Mong đợi: "Xin chào Việt Nam"</div>
+            </div>
+
+            <div class="test-case">
+                <span class="test-label">Test: Emoji</span>
+                <div class="hex-text">48656c6c6f20f09f9880</div>
+                <div class="expected">✅ Expected: "Hello 😀"</div>
+            </div>
+
+            <div class="test-case">
+                <span class="test-label">Test: Japanese</span>
+                <div class="hex-text">e38193e38293e381abe381a1e381af</div>
+                <div class="expected">✅ Expected: "こんにちは"</div>
+            </div>
+        </div>
+
+        <!-- URL Tests -->
+        <div class="test-section">
+            <h2>4. Phát hiện & Mở URL</h2>
+
+            <div class="test-case">
+                <span class="test-label">Test: Google URL</span>
+                <div class="hex-text">68747470733a2f2f676f6f676c652e636f6d</div>
+                <div class="expected">✅ Mong đợi: "https://google.com" + nút URL</div>
+            </div>
+
+            <div class="test-case">
+                <span class="test-label">Test: GitHub URL</span>
+                <div class="hex-text">68747470733a2f2f6769746875622e636f6d</div>
+                <div class="expected">✅ Expected: "https://github.com" + URL buttons</div>
+            </div>
+
+            <div class="test-case">
+                <span class="test-label">Test: URL with Path</span>
+                <div class="hex-text">68747470733a2f2f676f6f676c652e636f6d2f7365617263683f713d74657374</div>
+                <div class="expected">✅ Expected: "https://google.com/search?q=test" + URL buttons</div>
+            </div>
+        </div>
+
+        <!-- Edge Cases -->
+        <div class="test-section">
+            <h2>5. Edge Cases</h2>
+
+            <div class="test-case">
+                <span class="test-label">Test: Single Character</span>
+                <div class="hex-text">41</div>
+                <div class="expected">✅ Expected: "A"</div>
+            </div>
+
+            <div class="test-case">
+                <span class="test-label">Test: Long Text</span>
+                <div class="hex-text">
+                    546869732069732061206c6f6e67657220746578742074686174207368686f756c642074657374207363726f6c6c696e6720696e2074686520696e6c696e652062756262626c652e20497420636f6e7461696e73206d616e7920776f72647320616e642073686f756c642077726170207472726f7065726c792e
+                </div>
+                <div class="expected">✅ Expected: Long text with word wrap</div>
+            </div>
+
+            <div class="test-case">
+                <span class="test-label">Test: Mixed Case HEX</span>
+                <div class="hex-text">48656C6C6F</div>
+                <div class="expected">✅ Expected: "Hello"</div>
+            </div>
+        </div>
+
+        <!-- Invalid Cases -->
+        <div class="test-section">
+            <h2>6. Invalid HEX (Should NOT show decode button)</h2>
+
+            <div class="test-case">
+                <span class="test-label">Test: Odd Length</span>
+                <div class="hex-text">48656c6c6f</div>
+                <div class="expected">❌ Expected: No decode button (odd length)</div>
+            </div>
+
+            <div class="test-case">
+                <span class="test-label">Test: Invalid Characters</span>
+                <div>Regular text should not trigger: Hello World</div>
+                <div class="expected">❌ Expected: No decode button</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
