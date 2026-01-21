@@ -280,14 +280,21 @@ function showInlineBubble(rect, hexText) {
 
     // Prevent ALL clicks inside bubble from propagating to document
     inlineBubble.addEventListener('click', (e) => {
-        console.log('[HEX2TEXT] Bubble clicked, preventing all propagation');
+        console.log('[HEX2TEXT] Bubble clicked, target:', e.target.tagName);
+        // CRITICAL: Allow button clicks to propagate
+        if (e.target.tagName === 'BUTTON') {
+            console.log('[HEX2TEXT] Button detected, allowing click');
+            return; // Don't block button clicks
+        }
         e.stopPropagation();
         e.stopImmediatePropagation();
     }, true); // Use capture phase
 
     // Also add in bubble phase for extra safety
     inlineBubble.addEventListener('click', (e) => {
-        console.log('[HEX2TEXT] Bubble clicked (bubble phase), preventing all propagation');
+        if (e.target.tagName === 'BUTTON') {
+            return; // Allow buttons
+        }
         e.stopPropagation();
         e.stopImmediatePropagation();
     }, false);
@@ -307,8 +314,7 @@ function showInlineBubble(rect, hexText) {
         openBtn.className = 'hex2text-btn hex2text-btn-primary';
         openBtn.innerHTML = '🔗 Mở link';
         openBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
+            console.log('[HEX2TEXT] Open button clicked!');
             openUrl(decoded, false);
         });
 
@@ -316,8 +322,7 @@ function showInlineBubble(rect, hexText) {
         incognitoBtn.className = 'hex2text-btn hex2text-btn-secondary';
         incognitoBtn.innerHTML = '🕵️ Mở ẩn danh';
         incognitoBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
+            console.log('[HEX2TEXT] Incognito button clicked!');
             openUrl(decoded, true);
         });
 
