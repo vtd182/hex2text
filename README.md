@@ -1,4 +1,4 @@
-# Công cụ Giải mã HEX sang Text
+# Công cụ Giải mã HEX sang Text dành cho member NVH2VN
 
 Extension Chrome giúp bạn giải mã chuỗi hexadecimal thành văn bản một cách nhanh chóng và tiện lợi.
 
