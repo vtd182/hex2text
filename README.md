@@ -2,6 +2,12 @@
 
 Extension Chrome giúp bạn giải mã chuỗi hexadecimal thành văn bản một cách nhanh chóng và tiện lợi.
 
+## Demo
+
+![Demo giải mã HEX sang URL](docs/demos/inline-result.png)
+
+*Bôi đen HEX → Click "Giải mã HEX" → Kết quả hiện với nút mở link*
+
 ## Tại sao cần công cụ này?
 
 Khi làm việc với dữ liệu, đôi khi bạn gặp phải các chuỗi được mã hóa dưới dạng hexadecimal. Việc giải mã thủ công rất mất thời gian. Extension này sinh ra để giải quyết vấn đề đó - chỉ cần bôi đen và click, bạn sẽ có kết quả ngay lập tức.
@@ -39,6 +45,10 @@ Extension hỗ trợ 3 cách giải mã khác nhau, tùy vào tình huống củ
 Nếu kết quả là một URL, bạn sẽ thấy thêm 2 nút:
 - "Mở link": Mở URL trong tab mới
 - "Mở ẩn danh": Mở URL trong cửa sổ ẩn danh
+
+![Kết quả giải mã URL](docs/demos/inline-result.png)
+
+*Khi giải mã URL, extension tự động hiện nút mở link*
 
 ### Cách 2: Dùng popup
 
