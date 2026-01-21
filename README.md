@@ -134,4 +134,4 @@ Nếu bạn phát hiện lỗi hoặc muốn thêm tính năng, hãy tạo issue
 
 ## License
 
-MIT License - Bạn thoải mái sử dụng và chỉnh sửa theo ý muốn.
+MIT License
